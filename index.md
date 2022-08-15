@@ -1,4 +1,4 @@
-## Advanced Robotics Programming
+# Advanced Robotics Programming
 
 Description of course
 
@@ -19,7 +19,6 @@ PID explanation
 Odometry explanation
 
 ```markdown
-
 static double left_turns = 0.0;
 static double right_turns = 0.0;
 static double theta = 0.0;
@@ -57,7 +56,7 @@ double dist = (rightDist + leftDist)/2;
 double dy = dist * cos(theta + dtheta/2);
 double dx = dist * sin(theta + dtheta/2);
 
-// Update the robot x, y value with deltax, deltay
+// Update the robot x, y value with deltaX, deltaY
 x += dx;
 y += dy;
 
@@ -70,7 +69,6 @@ if (theta < -(2*PI))
 {
   theta += (2*PI);
 }
-
 ```
 
 
