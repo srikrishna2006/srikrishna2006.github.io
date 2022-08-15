@@ -2,27 +2,77 @@
 
 Description of course
 
-### Markdown
+### PID
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+PID explanation
 
 ```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+# PID Code
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
+
+
+### Odometry
+
+Odometry explanation
+
+```markdown
+
+static double left_turns = 0.0;
+static double right_turns = 0.0;
+static double theta = 0.0;
+static double x = 0.0;
+static double y = 0.0;
+
+//printf("Static %f %f %f %f, %f\n", left_turns, right_turns, theta, x, y);
+
+// Get the turns from the encoder
+double dleft = Left.position(turns);
+double dright = Right.position(turns);
+
+// Get the number of turns in the current cycle
+// which is equal to current turns - previous turns
+dleft -= left_turns;
+dright -= right_turns;
+
+// Store the total number of turns so far 
+left_turns += dleft;
+right_turns += dright;
+
+// Use the formula to calculate the left and the right distance
+// and the delta theta
+double leftDist = dleft * PI * WHDIA;
+double rightDist = dright * PI * WHDIA;
+double dtheta = (leftDist - rightDist)/(2*RW);
+
+
+// update the theta with delta theta and 
+// fix the upper and lower bound
+
+
+// Calculate distance and dx, dy
+double dist = (rightDist + leftDist)/2;
+double dy = dist * cos(theta + dtheta/2);
+double dx = dist * sin(theta + dtheta/2);
+
+// Update the robot x, y value with deltax, deltay
+x += dx;
+y += dy;
+
+theta +=dtheta;
+if (theta > 2*PI)
+{
+  theta -= (2*PI);
+}
+if (theta < -(2*PI))
+{
+  theta += (2*PI);
+}
+
+```
+
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
