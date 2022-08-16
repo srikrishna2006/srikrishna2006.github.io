@@ -1,6 +1,6 @@
 # Advanced Robotics Programming
 
-Description of course
+This course will cover the two essential tools that every robotics programmer must have; PID Control and Odometry Tracking System. Usually, beginner programmers are taught inaccurate methods for autonomous movement. It is usually believes that PID and Odometry are unreachable for beginners. However, I believe these concepts can be taught to anyone as long as they are willing to learn. This is an easy, introductory course to quickly grasp and implement these concepts. With these two tools, any programmer can soar to the top and help their team compete for awards in competitions.
 
 ### PID
 
