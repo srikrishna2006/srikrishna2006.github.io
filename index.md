@@ -8,7 +8,40 @@ PID explanation
 
 ```markdown
 
-# PID Code
+void PID(double setpoint, double kP, double kI, double kD)
+{
+  double left = Left.position(turns);
+  double right = Right.position(turns);
+  double wheelDiameter = 3.25;
+  double ave = (left + right)/2;
+  double dist = ave * M_PI * wheelDiameter;
+  double error = setpoint - dist;
+  double prevError = error;
+  double totalError = error;
+  double derivative = 0;
+  double integral = 0;
+  double vel  = 0;
+  while (error > 0.1 ) //  threshold value
+  {
+    derivative = error - prevError;
+    integral = totalError;
+    vel = kP * error + kI * integral + kD * derivative;
+    LB.spin(forward,vel,percent);
+    RB.spin(reverse,vel,percent);
+    LF.spin(forward,vel,percent);
+    RF.spin(reverse,vel,percent);
+    left = Left.position(turns);
+    right = Right.position(turns);
+    ave = (left + right)/2;
+    dist = ave * M_PI * wheelDiameter;
+    error = setpoint - dist;
+    prevError = error;
+    totalError += error;
+
+
+  }
+
+}
 
 
 ```
@@ -16,7 +49,7 @@ PID explanation
 
 ### Odometry
 
-Follow this [paper](file:///Users/srikrishnagurumurthy/Library/CloudStorage/OneDrive-Personal/Odometry%20doc%2010J%20pdf.pdf) that I wrote to to understand the odometry process
+Follow this [paper]([file:///Users/srikrishnagurumurthy/Library/CloudStorage/OneDrive-Personal/Odometry%20doc%2010J%20pdf.pdf](https://1drv.ms/b/s!AiHKcueme-JJzy-z3qbXo53DuXLg?e=AqjiaQ)) that I wrote to to understand the odometry process
 
 ```markdown
 static double left_turns = 0.0;
