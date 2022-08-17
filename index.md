@@ -16,7 +16,7 @@ PID explanation
 
 ### Odometry
 
-Odometry explanation
+Follow this [paper](file:///Users/srikrishnagurumurthy/Library/CloudStorage/OneDrive-Personal/Odometry%20doc%2010J%20pdf.pdf) that I wrote to to understand the odometry process
 
 ```markdown
 static double left_turns = 0.0;
